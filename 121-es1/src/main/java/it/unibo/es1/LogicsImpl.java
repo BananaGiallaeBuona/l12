@@ -45,8 +45,7 @@ public class LogicsImpl implements Logics {
     @Override
     public List<Boolean> enabledStates() {
         final List<Boolean> states = new ArrayList<>();
-        //here i've adpeted to know if i can usa a filter do don't use the field state
-        buttons.stream().forEach(i -> states.add(i.getValue() == buttons.size()));
+        buttons.stream().forEach(i -> states.add(i.getValue() != buttons.size()));
         return states;
     }
 
@@ -57,11 +56,6 @@ public class LogicsImpl implements Logics {
     public int hit(final int elem) {
         final Button but = buttons.get(elem);
         but.increment();
-        /*
-        if (but.getValue() == buttons.size()) {
-            but.setEnabled(false);
-        }
-         */
         return but.getValue();
     }
 
@@ -100,7 +94,7 @@ public class LogicsImpl implements Logics {
         //we check if all buttons are diseablead by counting how many of them are disabled
         int reached = 0;
         for (final boolean state : enabledStates()) {
-            if (state) {
+            if (!state) {
                 reached++;
             }
         }
