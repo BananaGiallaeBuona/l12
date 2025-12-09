@@ -67,7 +67,7 @@ public class LogicsImpl implements Logics {
         //sample: <<0|2|1|3>>
         final StringBuilder result = new StringBuilder("<<");
         for (final Button button : buttons) {
-            result.append(Integer.toString(button.getValue()) + "|"); //NOPMD it thinks that i', using StringBuffer
+            result.append(Integer.toString(button.getValue())).append('|'); 
         }
         result.replace(result.lastIndexOf("|"), result.length(), ">>");
         return result.toString();
