@@ -1,13 +1,13 @@
 package it.unibo.es1;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Implementation of the Logics interface.
  */
 public class LogicsImpl implements Logics {
-
-    private static final String ERROR_MESSAGE = "Unimplemented method";
+    private final List<Button> buttons;
 
     /**
      * Constructor.
@@ -15,7 +15,10 @@ public class LogicsImpl implements Logics {
      * @param size the size of the logics
      */
     public LogicsImpl(final int size) {
-        throw new UnsupportedOperationException(ERROR_MESSAGE);
+        this.buttons = new ArrayList<>(size);
+        for (int i = 0; i < size; i++) {
+            this.buttons.add(new Button());
+        }
     }
 
     /**
@@ -23,7 +26,7 @@ public class LogicsImpl implements Logics {
      */
     @Override
     public int size() {
-        throw new UnsupportedOperationException(ERROR_MESSAGE);
+        return this.buttons.size();
     }
 
     /**
@@ -31,7 +34,9 @@ public class LogicsImpl implements Logics {
      */
     @Override
     public List<Integer> values() {
-        throw new UnsupportedOperationException(ERROR_MESSAGE);
+        final List<Integer> values = new ArrayList<>();
+        buttons.stream().forEach(i -> values.add(i.getValue()));
+        return values;
     }
 
     /**
@@ -39,7 +44,9 @@ public class LogicsImpl implements Logics {
      */
     @Override
     public List<Boolean> enabledStates() {
-        throw new UnsupportedOperationException(ERROR_MESSAGE);
+        final List<Boolean> states = new ArrayList<>();
+        buttons.stream().forEach(i -> states.add(i.isState()));
+        return states;
     }
 
     /**
@@ -47,7 +54,13 @@ public class LogicsImpl implements Logics {
      */
     @Override
     public int hit(final int elem) {
-        throw new UnsupportedOperationException(ERROR_MESSAGE);
+        final Button but = buttons.get(elem);
+        but.increment();
+        if (but.getValue() == buttons.size()) {
+            but.setEnabled(false);
+        }
+        //toQuit();
+        return but.getValue();
     }
 
     /**
@@ -55,7 +68,24 @@ public class LogicsImpl implements Logics {
      */
     @Override
     public String result() {
-        throw new UnsupportedOperationException(ERROR_MESSAGE);
+        //sample: <<0|2|1|3>>
+        final StringBuilder result = new StringBuilder("<<");
+        for (final Button button : buttons) {
+            Integer.toString(button.getValue());
+            result.append("|"); //NOPMD it thinks that i', using StringBuffer
+        }
+        result.replace(result.lastIndexOf("|"), result.length(), ">>");
+        return result.toString();
+    }
+
+    private boolean checkEquals() {
+        final int value = 1;
+        for (final Button button : buttons) {
+            if (value != button.getValue()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -63,6 +93,43 @@ public class LogicsImpl implements Logics {
      */
     @Override
     public boolean toQuit() {
-        throw new UnsupportedOperationException(ERROR_MESSAGE);
+        if (checkEquals()) { //if all values are equals we exit from the program without pintinf anything
+            return true;
+        }
+        //we check if all buttons are diseablead by counting how many of them are disabled
+        int reached = 0;
+        for (final boolean state : enabledStates()) {
+            if (!state) {
+                reached++;
+            }
+        }
+        return reached == buttons.size();
     }
+
+    private class Button {
+        private int value;
+        private boolean state;
+
+        Button() {
+            value = 0;
+            state = true;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public void increment() {
+            this.value = value + 1;
+        }
+
+        public boolean isState() {
+            return state;
+        }
+
+        public void setEnabled(final boolean enabled) {
+            this.state = enabled;
+        }
+    }
+
 }
