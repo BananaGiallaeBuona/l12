@@ -71,17 +71,16 @@ public class LogicsImpl implements Logics {
         //sample: <<0|2|1|3>>
         final StringBuilder result = new StringBuilder("<<");
         for (final Button button : buttons) {
-            Integer.toString(button.getValue());
-            result.append("|"); //NOPMD it thinks that i', using StringBuffer
+            result.append(Integer.toString(button.getValue()) + "|"); //NOPMD it thinks that i', using StringBuffer
         }
         result.replace(result.lastIndexOf("|"), result.length(), ">>");
         return result.toString();
     }
 
     private boolean checkEquals() {
-        final int value = 1;
+        final int value = buttons.get(0).getValue(); // we have the 1st, then we 
         for (final Button button : buttons) {
-            if (value != button.getValue()) {
+            if (value == 0 || value != button.getValue()) {
                 return false;
             }
         }
