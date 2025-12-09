@@ -23,21 +23,5 @@ public final class Button {
     public void increment() {
         this.value = value + 1;
     }
-
-    /**
-     * @return a variable that is true if the values is modifible
-     */
-    /*
-    public boolean isState() {
-        return state;
-    }
-
-    /**
-     * @param enabled it's used to modify the state of the button
-     
-    public void setEnabled(final boolean enabled) {
-        this.state = enabled;
-    }
-     */
 }
 

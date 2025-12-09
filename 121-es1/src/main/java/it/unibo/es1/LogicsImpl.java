@@ -100,7 +100,7 @@ public class LogicsImpl implements Logics {
         //we check if all buttons are diseablead by counting how many of them are disabled
         int reached = 0;
         for (final boolean state : enabledStates()) {
-            if (!state) {
+            if (state) {
                 reached++;
             }
         }
