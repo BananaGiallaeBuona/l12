@@ -46,7 +46,7 @@ public class LogicsImpl implements Logics {
     public List<Boolean> enabledStates() {
         final List<Boolean> states = new ArrayList<>();
         //here i've adpeted to know if i can usa a filter do don't use the field state
-        buttons.stream().forEach(i -> states.add(i.isState()));
+        buttons.stream().forEach(i -> states.add(i.getValue() == buttons.size()));
         return states;
     }
 
