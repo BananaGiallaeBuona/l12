@@ -34,7 +34,7 @@ public class LogicsImpl implements Logics {
      */
     @Override
     public List<Integer> values() {
-        return buttons;
+        return new ArrayList<>(buttons);
     }
 
     /**
@@ -43,7 +43,7 @@ public class LogicsImpl implements Logics {
     @Override
     public List<Boolean> enabledStates() {
         final List<Boolean> states = new ArrayList<>();
-        buttons.stream().forEach(i -> states.add(i != buttons.size()));
+        buttons.stream().forEach(i -> states.add(i < buttons.size()));
         return states;
     }
 
@@ -52,7 +52,7 @@ public class LogicsImpl implements Logics {
      */
     @Override
     public int hit(final int elem) {
-        buttons.add(elem, buttons.get(elem)+1);
+        buttons.set(elem, buttons.get(elem) + 1);
         return buttons.get(elem);
     }
 
