@@ -3,15 +3,18 @@ package it.unibo.es2;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LogicsImpl implements Logics{
+/**
+ * an implementation of the logic for the game.
+ */
+public final class LogicsImpl implements Logics {
     private final int dimensions;
     private final Map<Pair<Integer, Integer>, Boolean> matrix;
 
-    LogicsImpl(final int dimensions){
+    LogicsImpl(final int dimensions) {
         this.dimensions = dimensions;
         this.matrix = new HashMap<>();
-        for (int x = 0; x < dimensions; x++){
-            for (int y = 0; y < dimensions; y++){
+        for (int x = 0; x < dimensions; x++) {
+            for (int y = 0; y < dimensions; y++) {
                 matrix.put(new Pair<>(x, y), false);
             }
         }
@@ -23,19 +26,19 @@ public class LogicsImpl implements Logics{
             throw new IllegalArgumentException("this position isn't in the grid");
         } else {
             //good
-            if (isClicked(p)){
-                matrix.put( p, false);
+            if (isClicked(p)) {
+                matrix.put(p, false);
                 return false;
             } else {
-                matrix.put( p, true);
+                matrix.put(p, true);
                 return true;
             }
         }
     }
-    
+
     @Override
     public boolean isClicked(final Pair<Integer, Integer> p) {
-        return matrix.get(p) == true;
+        return matrix.get(p);
     }
 
     @Override
@@ -67,5 +70,5 @@ public class LogicsImpl implements Logics{
 
         return false;
     }
-    
+
 }

@@ -1,4 +1,5 @@
 package it.unibo.es2;
+
 //HERE WE DON'T USE MVC SO I CALL DIRECTLY THE LOGIC METHODS
 import javax.swing.JButton;
 import javax.swing.JFrame;

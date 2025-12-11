@@ -1,32 +1,26 @@
 package it.unibo.es2;
 
 /**
- * we need to represent a grid, so every element of the grid can be
- * clicked or not, it's not importnt if the 
- *
+ * this interface is the model of the game.
  */
 public interface Logics {
 
     /**
-     * 
-     * @param p is the pair, which give me the coordinats to hit a specified button.  
-     * 
-     * @return true if the button NOW has *, returns false instead.
-     */
-    public boolean hit(Pair<Integer, Integer> p);
-
-    /**
-     * 
-     * @param p is the pair, which give me the coordinats to check a specified button.  
+     * @param p is the pair, which give me the coordinats to hit a specified button.
      * 
      * @return true if the button NOW has *, returns false instead.
      */
-    public boolean isClicked(Pair<Integer, Integer> p);
+    boolean hit(Pair<Integer, Integer> p);
 
     /**
+     * @param p is the pair, which give me the coordinats to check a specified button.
      * 
-     * @return true if there is anuy condition needed to end the game, 
-     * line or column full *.
+     * @return true if the button NOW has *, returns false instead.
      */
-    public boolean toQuit();
+    boolean isClicked(Pair<Integer, Integer> p);
+
+    /**
+     * @return true if there is anuy condition needed to end the game: line or column full *.
+     */
+    boolean toQuit();
 }
