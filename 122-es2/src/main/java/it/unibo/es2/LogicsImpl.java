@@ -53,10 +53,8 @@ public class LogicsImpl implements Logics{
             }
         }
 
-        // Controllo le colonne
         for (int col = 0; col < this.dimensions; col++) {
             boolean colFull = true;
-            // Continuo il ciclo solo se colFull è ancora true
             for (int row = 0; row < this.dimensions && colFull; row++) {
                 if (!matrix.get(new Pair<>(row, col))) {
                     colFull = false;

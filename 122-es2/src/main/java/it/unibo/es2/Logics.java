@@ -11,7 +11,7 @@ public interface Logics {
      * 
      * @param p is the pair, which give me the coordinats to hit a specified button.  
      * 
-     * @return true if the button has *, returns false instead.
+     * @return true if the button NOW has *, returns false instead.
      */
     public boolean hit(Pair<Integer, Integer> p);
 
@@ -19,7 +19,7 @@ public interface Logics {
      * 
      * @param p is the pair, which give me the coordinats to check a specified button.  
      * 
-     * @return true if the button has *, returns false instead.
+     * @return true if the button NOW has *, returns false instead.
      */
     public boolean isClicked(Pair<Integer, Integer> p);
 
