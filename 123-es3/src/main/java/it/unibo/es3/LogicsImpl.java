@@ -1,6 +1,7 @@
 package it.unibo.es3;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.Random;
@@ -13,6 +14,7 @@ public final class LogicsImpl implements Logics<Pair<Integer, Integer>, Boolean>
     LogicsImpl(final int dimensions) {
         this.dimensions = dimensions;
         this.matrix = new HashMap<>();
+        this.expanded = new HashSet<>();
         for (int x = 0; x < dimensions; x++) {
             for (int y = 0; y < dimensions; y++) {
                 matrix.put(new Pair<>(x, y), false);

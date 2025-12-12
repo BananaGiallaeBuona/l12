@@ -38,12 +38,18 @@ public final class GUI extends JFrame {
                 button.addActionListener(e -> {
                     logic.expansion();
                     //i want to make that foreach element that is true i can get the value
-                    logic.getExpanded().stream().forEach( k -> cells.get(k).setText("*"));
+                    reload();
                 });
                 panel.add(button);
             }
         }
         pack();
+        logic.bigBang();
+        reload();
         this.setVisible(true);
+    }
+
+    private void reload(){
+        logic.getExpanded().stream().forEach( k -> cells.get(k).setText("*"));
     }
 }
