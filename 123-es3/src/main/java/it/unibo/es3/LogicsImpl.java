@@ -22,6 +22,9 @@ public final class LogicsImpl implements Logics<Pair<Integer, Integer>, Boolean>
     
     @Override
     public void bigBang() {
+        if (expanded.size() > 0){
+            throw new IllegalStateException("there already some activated cells");
+        }
         Random rnd = new Random();
         while (expanded.size() < 3) {
             int x = rnd.nextInt(dimensions); // 0 <= x < size
