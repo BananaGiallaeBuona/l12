@@ -3,6 +3,7 @@ package it.unibo.es3;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.Random;
 
 public final class LogicsImpl implements Logics<Pair<Integer, Integer>, Boolean>{
     private int dimensions;
@@ -19,6 +20,18 @@ public final class LogicsImpl implements Logics<Pair<Integer, Integer>, Boolean>
         }
     }
     
+    @Override
+    public void bigBang() {
+        Random rnd = new Random();
+        while (expanded.size() < 3) {
+            int x = rnd.nextInt(dimensions); // 0 <= x < size
+            int y = rnd.nextInt(dimensions); // 0 <= y < size
+            put(x, y);
+            expanded.add(new Pair<>(x,y));
+        }
+        
+    }
+
     @Override
     public void expansion() {
         for (Pair<Integer,Integer> pair : expanded) {
