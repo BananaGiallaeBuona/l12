@@ -32,6 +32,10 @@ public class LogicsImpl implements Logics{
             //RIGHT
             matrix.put(new Pair<>(pair.x()+1, pair.y()), true);
             //OBLIQUAL
+            matrix.put(new Pair<>(pair.x()-1, pair.y()-1), true); //HIGH SX
+            matrix.put(new Pair<>(pair.x()+1, pair.y()-1), true); //HIGH DX
+            matrix.put(new Pair<>(pair.x()-1, pair.y()+1), true); //DOWN SX
+            matrix.put(new Pair<>(pair.x()+1, pair.y()+1), true); //DOWN DX
         }
         for (Pair<Integer,Integer> pair : matrix.keySet()) {
             if (matrix.get(pair)){
@@ -39,12 +43,4 @@ public class LogicsImpl implements Logics{
             }
         }
     }
-
-    @Override
-    public void next() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'next'");
-    }
-
-    
 }
