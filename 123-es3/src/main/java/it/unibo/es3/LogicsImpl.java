@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class LogicsImpl implements Logics{
+public final class LogicsImpl implements Logics<Pair<Integer, Integer>, Boolean>{
     private int dimensions;
     private final Map<Pair<Integer, Integer>, Boolean> matrix;
     private Set<Pair<Integer, Integer>> expanded;
@@ -47,5 +47,16 @@ public class LogicsImpl implements Logics{
         if (x < dimensions && x >= 0 && y < dimensions && y >= 0){
             matrix.put(new Pair<>(x, y), true);
         }
-    } 
+    }
+
+    @Override
+    public Set<Pair<Integer, Integer>> getExpanded() {
+        return this.expanded;
+    }
+
+    @Override
+    public Map<Pair<Integer, Integer>, Boolean> getMatrix() {
+        Map<Pair<Integer, Integer>, Boolean> cp = this.matrix;
+        return cp;
+    }
 }

@@ -5,8 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
 import java.io.Serial;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * GUI for the game.
@@ -14,8 +14,9 @@ import java.util.List;
 public final class GUI extends JFrame {
 
     @Serial
+    private final LogicsImpl logic;
     private static final long serialVersionUID = 1L;
-    private final List<JButton> cells = new ArrayList<>();
+    private final Map<Pair<Integer, Integer>, JButton> cells = new HashMap<>();
 
     /**
      * Constructor.
@@ -23,6 +24,7 @@ public final class GUI extends JFrame {
      * @param width the size of the grid
      */
     public GUI(final int width) {
+        this.logic= new LogicsImpl(width);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         // Create a panel with a grid layout
         final JPanel panel = new JPanel(new GridLayout(width, width));
@@ -31,9 +33,13 @@ public final class GUI extends JFrame {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < width; j++) {
                 final var pos = new Pair<>(j, i);
-                final JButton button = new JButton(pos.toString());
-                this.cells.add(button);
-                button.addActionListener(e -> button.setText(String.valueOf(cells.indexOf(button))));
+                final JButton button = new JButton("");
+                this.cells.put(pos, button);
+                button.addActionListener(e -> {
+                    logic.expansion();
+                    //i want to make that foreach element that is true i can get the value
+                    logic.getExpanded().stream().forEach( k -> cells.get(k).setText("*"));
+                });
                 panel.add(button);
             }
         }

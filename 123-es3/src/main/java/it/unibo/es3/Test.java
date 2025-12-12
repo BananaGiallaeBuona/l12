@@ -31,3 +31,9 @@ public final class Test {
         new GUI(10); // only use odd numbers as arguments!
     }
 }
+
+/*TO DO
+testare la gui facendo si che sia con l'action del bottne
+adattare la gui per farlo andare col tasto
+
+*/
