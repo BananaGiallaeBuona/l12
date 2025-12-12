@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * this class.
@@ -30,7 +30,7 @@ public final class LogicsImpl implements Logics<Pair<Integer, Integer>, Boolean>
         if (expanded.isEmpty()) {
             throw new IllegalStateException("there already some activated cells");
         }
-        final Random rnd = new Random();
+        final var rnd = ThreadLocalRandom.current();
         while (expanded.size() < 3) {
             final int x = rnd.nextInt(dimensions); // 0 <= x < size
             final int y = rnd.nextInt(dimensions); // 0 <= y < size
@@ -57,9 +57,9 @@ public final class LogicsImpl implements Logics<Pair<Integer, Integer>, Boolean>
             put(pair.x() - 1, pair.y() + 1); //DOWN SX
             put(pair.x() + 1, pair.y() + 1); //DOWN DX
         }
-        for (final Pair<Integer, Integer> pair : matrix.keySet()) {
-            if (matrix.get(pair)) {
-                expanded.add(pair);
+        for (final var e : matrix.entrySet()) {
+            if (e.getValue()) {
+                expanded.add(e.getKey());
             }
         }
     }
@@ -72,17 +72,11 @@ public final class LogicsImpl implements Logics<Pair<Integer, Integer>, Boolean>
 
     @Override
     public Set<Pair<Integer, Integer>> getExpanded() {
-        final Set<Pair<Integer, Integer>> copy = this.expanded; //NOPMD it says that i should 
-        // use the value, but i want do rerturn a definsive copy
-        return copy;
-        //PMD says "Consider simply using the value vs. storing it in local variable 'copy'."
+        return new HashSet<>(this.expanded);
     }
 
     @Override
     public Map<Pair<Integer, Integer>, Boolean> getMatrix() {
-        final Map<Pair<Integer, Integer>, Boolean> copy = this.matrix; //NOPMD it says that i should
-        //  use the value, but i want do rerturn a definsive copy
-        return copy;
-        //PMD says "Consider simply using the value vs. storing it in local variable 'copy'."
+        return new HashMap<>(this.matrix);
     }
 }

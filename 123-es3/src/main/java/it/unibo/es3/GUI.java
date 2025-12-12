@@ -18,7 +18,7 @@ public final class GUI extends JFrame {
 
     @Serial
     private static final long serialVersionUID = 1L;
-    private final LogicsImpl logic;
+    private final transient LogicsImpl logic;
     private final Map<Pair<Integer, Integer>, JButton> cells = new HashMap<>();
 
     /**
