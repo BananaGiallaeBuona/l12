@@ -27,7 +27,7 @@ public final class GUI extends JFrame {
      * @param width the size of the grid
      */
     public GUI(final int width) {
-        this.logic= new LogicsImpl(width);
+        this.logic = new LogicsImpl(width);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         // Create a panel with a grid layout
         final JPanel gridPanel = new JPanel(new GridLayout(width, width));
@@ -56,13 +56,13 @@ public final class GUI extends JFrame {
         startingGame();
     }
 
-    private void startingGame(){
+    private void startingGame() {
         logic.bigBang();
         reload();
         this.setVisible(true);
     }
 
-    private void reload(){
-        logic.getExpanded().stream().forEach( k -> cells.get(k).setText("*"));
+    private void reload() {
+        logic.getExpanded().stream().forEach(k -> cells.get(k).setText("*"));
     }
 }
