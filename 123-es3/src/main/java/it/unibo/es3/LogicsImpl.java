@@ -21,21 +21,20 @@ public class LogicsImpl implements Logics{
     
     @Override
     public void expansion() {
-        //TODO CHECKBORDER()
         for (Pair<Integer,Integer> pair : expanded) {
             //UP
-            matrix.put(new Pair<>(pair.x(), pair.y()-1), true);
+            put(pair.x(), pair.y()-1);
             //DOWN
-            matrix.put(new Pair<>(pair.x(), pair.y()+1), true);
+            put(pair.x(), pair.y()+1);
             //LEFT
-            matrix.put(new Pair<>(pair.x()-1, pair.y()), true);
+            put(pair.x()-1, pair.y());
             //RIGHT
-            matrix.put(new Pair<>(pair.x()+1, pair.y()), true);
+            put(pair.x()+1, pair.y());
             //OBLIQUAL
-            matrix.put(new Pair<>(pair.x()-1, pair.y()-1), true); //HIGH SX
-            matrix.put(new Pair<>(pair.x()+1, pair.y()-1), true); //HIGH DX
-            matrix.put(new Pair<>(pair.x()-1, pair.y()+1), true); //DOWN SX
-            matrix.put(new Pair<>(pair.x()+1, pair.y()+1), true); //DOWN DX
+            put(pair.x()-1, pair.y()-1); //HIGH SX
+            put(pair.x()+1, pair.y()-1); //HIGH DX
+            put(pair.x()-1, pair.y()+1); //DOWN SX
+            put(pair.x()+1, pair.y()+1); //DOWN DX
         }
         for (Pair<Integer,Integer> pair : matrix.keySet()) {
             if (matrix.get(pair)){
