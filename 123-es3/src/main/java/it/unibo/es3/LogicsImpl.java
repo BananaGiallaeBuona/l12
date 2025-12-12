@@ -43,4 +43,10 @@ public class LogicsImpl implements Logics{
             }
         }
     }
+
+    private void put(int x, int y){
+        if (x < dimensions && x >= 0 && y < dimensions && y >= 0){
+            matrix.put(new Pair<>(x, y), true);
+        }
+    } 
 }
