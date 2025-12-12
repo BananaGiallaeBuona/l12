@@ -27,7 +27,7 @@ public final class LogicsImpl implements Logics<Pair<Integer, Integer>, Boolean>
 
     @Override
     public void bigBang() {
-        if (expanded.isEmpty()) {
+        if (!expanded.isEmpty()) {
             throw new IllegalStateException("there already some activated cells");
         }
         final var rnd = ThreadLocalRandom.current();
